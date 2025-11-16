@@ -2,24 +2,52 @@ const express = require('express')
 const app = express()
 const port=3000
 const web=require(`./routes/web`)
+const connectDB = require('./DB/ConnectDB')
+const flash=require('connect-flash')
+const session=require('express-session')
+require('dotenv').config()
+const userSetInfo =require('./middleware/userSetInfo')
 
-//routing method
-//in this code they find / by default as a path
-// app.get('/', (req, res) => {
-//   res.send('Hello it is a home page')
-// })
 
-// app.get('/about1', (req, res) => {
-//   res.send('Hello Deepak it is an about1 page')
-// })
+//image upload
+// const fileUpload=require('express-fileupload')
 
-// app.get('/deepak', (req, res) => {
-//   res.send('Hello Deepak I am prepare your World! it is deepak page')
-// })
+// app.use(fileUpload({
+//   useTempFiles:true,
+// }))
+
+const cookieParser = require('cookie-parser')  //get token from cookie
+
+app.use(cookieParser())
+
+app.use(userSetInfo)
+
+//session
+app.use(session({
+    secret: 'secret',
+    cookie: {maxAge: 60000},
+    resave: false,
+    saveUninitialized: false,
+}));
+// Flash messages
+app.use(flash())
+
+
+app.set('view engine','ejs')  //view engine ejs
+
+app.use(express.static('public')) //for using public files in that path
+
+connectDB()
+
+//data get form
+app.use(express.urlencoded())
+
+
+
 
 //route loader
 app.use('/',web)
 
-app.listen(port, () => {
-  console.log(`server start locahost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`server start locahost:${process.env.PORT}`)
 })

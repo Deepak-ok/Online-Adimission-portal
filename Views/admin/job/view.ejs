@@ -1,0 +1,108 @@
+<%- include('../navbar.ejs') %>
+<%- include('../sidebar.ejs') %>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">job</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Job View</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+        
+            <%if(success.length>0){ %> 
+              <div class="alert alert-success"> <%=success%></div>
+             <%}%>
+        </div>
+        <!-- /.card-header -->
+      <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>S.NO</th>
+                <th>Title</th>
+                <th>CompanyName</th>
+                <th>JobType</th>
+                <th>SalaryRange</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+          
+              <tr>
+                <td><%= Jobs.id %></td>
+                <td><%= Jobs.title %></td>
+                <td><%= Jobs.companyName %></td>
+                <td><%= Jobs.jobType %></td>
+                <td><%= Jobs.salaryRange %></td>
+                
+              
+              </tr>
+
+           
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>S.NO</th>
+                <th>Title</th>
+                <th>CompanyName</th>
+                <th>JobType</th>
+                <th>SalaryRange</th>
+               
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add job</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+       
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+<!-- /.modal -->
+
+<%- include('../footer.ejs') %>
